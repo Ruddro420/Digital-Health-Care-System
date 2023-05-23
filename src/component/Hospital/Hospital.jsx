@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import './Hospital.css'
 import { BsFillTelephoneFill, BsStar } from 'react-icons/bs';
+import { useState } from 'react';
 const Hospital = () => {
     const hospitalData = [
         { id: 1, name: 'Update Rangpur', location: 'Rangpur,Bangladesh', phone: '01755232541', rating: '5' },
@@ -10,6 +11,10 @@ const Hospital = () => {
         { id: 5, name: 'Medical College', location: 'ParkerMor,Bangladesh', phone: '01755232541', rating: '5' },
         { id: 6, name: 'Pulse Hospital', location: 'Gaibandha,Bangladesh', phone: '01755232541', rating: '2' },
     ]
+    // For Search
+
+    const [search,setSearch] = useState('');
+    console.log(search);
     return (
         <div>
             <div className="main-heading">
@@ -24,11 +29,11 @@ const Hospital = () => {
                         <div className="search-container">
                             <form action="">
                                 <div>
-                                    <input className='form-control custom-input' type="search" name="" id="" placeholder='Find Location ...' /> <br />
+                                    <input onChange={(e)=> setSearch(e.target.value)} className='form-control custom-input' type="search" name="" id="" placeholder='Find Location ...' /> <br />
                                 </div>
-                                <div className="search-button">
+                                {/* <div className="search-button">
                                     <button>Search</button>
-                                </div>
+                                </div> */}
                             </form>
                         </div>
                     </div>
@@ -37,7 +42,13 @@ const Hospital = () => {
                 <div className="container search-result-container">
                     <div className="row">
                         {
-                            hospitalData.map(bloodItem =>
+                            hospitalData.filter((bloodItem)=>
+                                /* return search.toLowerCase() === '' ? bloodItem : */ 
+                                bloodItem.location.toLowerCase().includes(search)
+                                || 
+                                bloodItem.location.toUpperCase().includes(search)
+                            )
+                            .map(bloodItem =>
                                 
                                 <div key={bloodItem.id} className="col-4">
                                     <div className="card search-content">
