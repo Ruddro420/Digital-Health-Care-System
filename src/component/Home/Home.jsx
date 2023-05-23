@@ -3,12 +3,12 @@ import './Home.css'
 import Header from '../Header/Header';
 const Home = () => {
     const homeValue = [
-        { id: 1, value: 'Blood', src: '/blood', icon: '../../../public/img/homeIcon/blood.png', bgColor: '#dc765f' },
-        { id: 2, value: 'Hospital', src: '/hospital', icon: '../../../public/img/homeIcon/hospital.png', bgColor: '#a3bfbe' },
-        { id: 3, value: 'Doctors', src: '/doctors', icon: '../../../public/img/homeIcon/doctor.png', bgColor: '#ffbd59' },
-        { id: 4, value: 'Ambulance', src: '/ambulance', icon: '../../../public/img/homeIcon/ambulance.png', bgColor: '#5ce1e6' },
-        { id: 5, value: 'Medicine', src: '/medicine', icon: '../../../public/img/homeIcon/medicine.png', bgColor: '#38b6ff' },
-        { id: 6, value: 'Emergency', src: '/emergency', icon: '../../../public/img/homeIcon/emergency.png', bgColor: '#ff66c4' },
+        { id: 1, value: 'Blood', src: '/blood', icon: '../../../img/homeIcon/blood.png', bgColor: '#dc765f' },
+        { id: 2, value: 'Hospital', src: '/hospital', icon: '../../../img/homeIcon/hospital.png', bgColor: '#a3bfbe' },
+        { id: 3, value: 'Doctors', src: '/doctors', icon: '../../../img/homeIcon/doctor.png', bgColor: '#ffbd59' },
+        { id: 4, value: 'Ambulance', src: '/ambulance', icon: '../../../img/homeIcon/ambulance.png', bgColor: '#5ce1e6' },
+        { id: 5, value: 'Medicine', src: '/medicine', icon: '../../../img/homeIcon/medicine.png', bgColor: '#38b6ff' },
+        { id: 6, value: 'Emergency', src: '/emergency', icon: '../../../img/homeIcon/emergency.png', bgColor: '#ff66c4' },
     ]
 
 
