@@ -1,14 +1,7 @@
 .home-container{
     margin-top: 30px;
     margin-bottom: 20px;
-    text-align: center;
 }
-
-.home-container h1{
-    letter-spacing: 10px;
-    font-size: 60px!important;
-}
-
 .home-container img {
     width: 150px;
     margin-top: 5px;

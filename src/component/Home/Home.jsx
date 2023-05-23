@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import './Home.css'
 const Home = () => {
     const homeValue = [
@@ -12,23 +13,29 @@ const Home = () => {
 
     return (
         <div className='home-container'>
-            <h3>DIGITAL HEALTH CARE</h3>
-            <h1>OPTION LIST</h1>
+            <div className="main-heading">
+                <Link to='/' >
+                    <h3>DIGITAL HEALTH CARE</h3>
+                </Link>
+                <h1>OPTION LIST</h1>
+            </div>
             <div className="container">
                 <div className="row">
                     {
                         homeValue.map(item =>
                             <div key={item.id} className="col-4 mt-5">
-                                <a style={{ boxShadow: `12px 12px 2px 1px ${item.bgColor}` }} href={item.src} className="card">
-                                    <div className="card-body">
-                                        <div className='home-container-img'>
-                                            <img src={item.icon} alt="" />
-                                        </div>
-                                        <div style={{ backgroundColor: `${item.bgColor}` }} className='home-container-value'>
-                                            <h2>{item.value}</h2>
+                                <Link to={item.src}>
+                                    <div style={{ boxShadow: `12px 12px 2px 1px ${item.bgColor}` }} href={item.src} className="card">
+                                        <div className="card-body">
+                                            <div className='home-container-img'>
+                                                <img src={item.icon} alt="" />
+                                            </div>
+                                            <div style={{ backgroundColor: `${item.bgColor}` }} className='home-container-value'>
+                                                <h2>{item.value}</h2>
+                                            </div>
                                         </div>
                                     </div>
-                                </a>
+                                </Link>
                             </div>
                         )
                     }
