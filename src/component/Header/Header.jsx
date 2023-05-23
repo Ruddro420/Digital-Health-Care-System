@@ -6,7 +6,9 @@ const Header = () => {
         <div>
             <Navbar bg='light'>
                 <Container>
-                    <Navbar.Brand href="#home">DHCS</Navbar.Brand>
+                    <Link to='/' >
+                        <Navbar.Brand>DHCS</Navbar.Brand>
+                    </Link>
                     <Navbar.Toggle />
                     <Navbar.Collapse className="justify-content-end">
                         <Navbar.Text>
