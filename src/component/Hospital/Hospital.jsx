@@ -29,7 +29,7 @@ const Hospital = () => {
                         <div className="search-container">
                             <form action="">
                                 <div>
-                                    <input onChange={(e)=> setSearch(e.target.value)} className='form-control custom-input' type="search" name="" id="" placeholder='Find Location ...' /> <br />
+                                    <input onChange={(e)=> setSearch(e.target.value.toLowerCase())} className='form-control custom-input' type="search" name="" id="" placeholder='Find Location ...' /> <br />
                                 </div>
                                 {/* <div className="search-button">
                                     <button>Search</button>

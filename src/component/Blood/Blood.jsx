@@ -3,8 +3,17 @@ import './Blood.css'
 import { BsFillSearchHeartFill } from "react-icons/bs";
 import { BsFillTelephoneFill } from "react-icons/bs";
 import { Link } from 'react-router-dom';
+import { useState } from 'react';
 
 const Blood = () => {
+
+// For Location
+const [searchLocation, setSearchLocation] = useState('');
+// For Blood
+const [searchBlood, setSearchBlood] = useState('');
+
+console.log(searchLocation,searchBlood);
+
     const bloodData = [
         { id: 1, name: 'Ali Fiad Ruddro', location: 'Rangpur,Bangladesh', bloodGroup: 'O+', lastDate: '05/23/2023' },
         { id: 2, name: 'Raju Ahmed', location: 'Dhaka,Bangladesh', bloodGroup: 'A+', lastDate: '05/3/2022' },
@@ -30,6 +39,7 @@ const Blood = () => {
                                     <BsFillSearchHeartFill />
                                 </InputGroup.Text>
                                 <Form.Control
+                                    onChange={(e)=> setSearchLocation(e.target.value.toLowerCase())}
                                     placeholder="Find Location"
                                     aria-label="Username"
                                     aria-describedby="basic-addon1"
@@ -39,8 +49,10 @@ const Blood = () => {
                                 <InputGroup.Text id="basic-addon1">
                                     <BsFillSearchHeartFill />
                                 </InputGroup.Text>
-                                <Form.Select aria-label="Default select example">
-                                    <option>Select Blood Group</option>
+                                <Form.Select
+                                onChange={(e)=> setSearchBlood(e.target.value.toLowerCase())}
+                                 aria-label="Default select example">
+                                    <option value=''>Select Blood Group</option>
                                     <option value="A+">A+</option>
                                     <option value="B+">B+</option>
                                     <option value="O+">O+</option>
@@ -51,9 +63,6 @@ const Blood = () => {
                                     <option value="AB-">AB-</option>
                                 </Form.Select>
                             </InputGroup>
-                            <div className="search-button">
-                                <button>Search</button>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -61,7 +70,14 @@ const Blood = () => {
                 <div className="container search-result-container">
                     <div className="row">
                         {
-                            bloodData.map(bloodItem =>
+                            bloodData.filter((bloodItem)=> 
+                            
+                            bloodItem.location.toLowerCase().includes(searchLocation)
+                            &&
+                            bloodItem.bloodGroup.toLowerCase().includes(searchBlood)
+
+                            )
+                            .map(bloodItem =>
                                 <div key={bloodItem.id} className="col-4">
                                     <div className="card search-content">
                                         <div className="card-body">
