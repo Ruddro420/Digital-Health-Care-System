@@ -74,7 +74,7 @@ button:focus-visible {
  }
 
  body{
-  width: 991px;
+  width: 100%;
   margin: auto!important;
   background: #fdf7f2!important;
  }
