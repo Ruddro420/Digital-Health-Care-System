@@ -12,60 +12,65 @@ import ManageDashboard from "../component/Dashboard/ManageDashboard/ManageDashbo
 import ManageBlood from "../component/Dashboard/ManageBlood/ManageBlood";
 import Error from "../component/Error/Error";
 import SideBar from "../component/Dashboard/SideBar/SideBar";
+import ManageHospital from "../component/Dashboard/ManageHospital/ManageHospital";
 
 export const router = createBrowserRouter([
-    {
-      path: "/",
-      element: <Home></Home>,
-    },
-    {
-      path: "/blood",
-      element: <Blood></Blood>,
-    },
-    {
-      path: "/hospital",
-      element: <Hospital></Hospital>,
-    },
-    {
-      path: "/doctors",
-      element: <Doctors></Doctors>,
-    },
-    {
-      path: "/ambulance",
-      element: <Ambulance></Ambulance>,
-    },
-    {
-      path: "/medicine",
-      element: <Medicine></Medicine>,
-    },
-    {
-      path: "/emergency",
-      element: <Emergency></Emergency>,
-    },
-    {
-      path: "/login",
-      element: <Login></Login>,
-    },
-    {
-      path: "/register",
-      element: <Register></Register>,
-    },
-    {
-      path: "/dashboard",
-      element: <SideBar></SideBar>,
-      children: [
-        {
-          path: '/dashboard/addblood',
-          element: <ManageBlood></ManageBlood>
-        },
-        {
-            path: '/dashboard/',
-            element: <ManageDashboard></ManageDashboard>
-          },
-      ]
-    },
-    {
-      path: "*",
-      element: <Error></Error>
-    },
-  ]);
+  {
+    path: "/",
+    element: <Home></Home>,
+  },
+  {
+    path: "/blood",
+    element: <Blood></Blood>,
+  },
+  {
+    path: "/hospital",
+    element: <Hospital></Hospital>,
+  },
+  {
+    path: "/doctors",
+    element: <Doctors></Doctors>,
+  },
+  {
+    path: "/ambulance",
+    element: <Ambulance></Ambulance>,
+  },
+  {
+    path: "/medicine",
+    element: <Medicine></Medicine>,
+  },
+  {
+    path: "/emergency",
+    element: <Emergency></Emergency>,
+  },
+  {
+    path: "/login",
+    element: <Login></Login>,
+  },
+  {
+    path: "/register",
+    element: <Register></Register>,
+  },
+  {
+    path: "/dashboard",
+    element: <SideBar></SideBar>,
+    children: [
+      {
+        path: '/dashboard/addblood',
+        element: <ManageBlood></ManageBlood>
+      },
+      {
+        path: '/dashboard/doctors',
+        element: <ManageHospital />
+      },
+      {
+        path: '/dashboard/',
+        element: <ManageDashboard></ManageDashboard>
+      },
+    ]
+  },
+  {
+    path: "*",
+    element: <Error></Error>
+  },
+]);

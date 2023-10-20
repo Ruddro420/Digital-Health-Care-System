@@ -9,16 +9,61 @@ const SideBar = () => {
                     <nav id="sidebarMenu" className="collapse d-lg-block sidebar collapse bg-white shadow">
                         <div className="position-sticky">
                             <div className="list-group list-group-flush mx-3 mt-4">
-                            <div className="list-item mt-3 mb-3 border shadow p-3 rounded">
-                                      <Link to='/dashboard'>
-                                           Manage Dashboard
-                                        </Link>
+                                <div className="list-item mt-5 mb-3 border shadow p-3 rounded">
+                                    <Link to='/dashboard'>
+                                        Manage Dashboard
+                                    </Link>
                                 </div>
                                 <div className="list-item shadow">
                                     <DropdownButton id="dropdown-basic-button" title="Manage Blood">
                                         <Link to='/dashboard/addblood'>
                                             <div className='dropdown-item'>
                                                 Add Blood
+                                            </div>
+                                        </Link>
+                                    </DropdownButton>
+                                </div>
+                                <div className="list-item shadow mt-5">
+                                    <DropdownButton id="dropdown-basic-button" title="Manage Hospital">
+                                        <Link to='/dashboard/doctors'>
+                                            <div className='dropdown-item'>
+                                                Add Hospital
+                                            </div>
+                                        </Link>
+                                    </DropdownButton>
+                                </div>
+                                <div className="list-item shadow mt-5">
+                                    <DropdownButton id="dropdown-basic-button" title="Manage Doctors">
+                                        <Link to='/dashboard/addblood'>
+                                            <div className='dropdown-item'>
+                                                Add Doctors
+                                            </div>
+                                        </Link>
+                                    </DropdownButton>
+                                </div>
+                                <div className="list-item shadow mt-5">
+                                    <DropdownButton id="dropdown-basic-button" title="Manage Ambulance">
+                                        <Link to='/dashboard/addblood'>
+                                            <div className='dropdown-item'>
+                                                Add Ambulance
+                                            </div>
+                                        </Link>
+                                    </DropdownButton>
+                                </div>
+                                <div className="list-item shadow mt-5">
+                                    <DropdownButton id="dropdown-basic-button" title="Manage Medicine">
+                                        <Link to='/dashboard/addblood'>
+                                            <div className='dropdown-item'>
+                                                Add Medicine
+                                            </div>
+                                        </Link>
+                                    </DropdownButton>
+                                </div>
+                                <div className="list-item shadow mt-5">
+                                    <DropdownButton id="dropdown-basic-button" title="Manage Emergency">
+                                        <Link to='/dashboard/addblood'>
+                                            <div className='dropdown-item'>
+                                                Add Emergency
                                             </div>
                                         </Link>
                                     </DropdownButton>
