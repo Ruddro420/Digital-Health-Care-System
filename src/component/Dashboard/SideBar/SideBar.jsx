@@ -1,7 +1,25 @@
+import { useNavigate } from 'react-router-dom';
 import { Dropdown, DropdownButton } from 'react-bootstrap';
 import './SideBar.css'
-import { Link, Outlet } from 'react-router-dom';
+import { Link, Outlet, } from 'react-router-dom';
+import { useContext } from 'react';
+import { AuthContext } from '../../../context/AuthContext';
+import toast from 'react-hot-toast';
+/* import toast from 'react-hot-toast'; */
 const SideBar = () => {
+    const { user, logOut } = useContext(AuthContext)
+    const navigate = useNavigate()
+
+    const logOutFromDashboard = () => {
+        logOut()
+            .then(() => {
+                toast.success('Successfully logout!');
+                navigate('/login');
+            }).catch((error) => {
+                console.log(error);
+            });
+    }
+
     return (
         <>
             <div>
@@ -92,9 +110,11 @@ const SideBar = () => {
                             </Link>
                             <ul className="navbar-nav ms-auto d-flex flex-row">
                                 <li className="nav-item dropdown">
-                                    <DropdownButton id="dropdown-basic-button" title='Name'>
-                                        <Dropdown.Item href="#/action-1">email@gmai.com</Dropdown.Item>
-                                        <Dropdown.Item href="#/action-2">Logout</Dropdown.Item>
+                                    <DropdownButton id="dropdown-basic-button" title={user?.displayName}>
+                                        <Dropdown.Item disabled href="#/action-1">{user?.email}</Dropdown.Item>
+                                        <center>
+                                            <button className='btn btn-danger mt-3' onClick={logOutFromDashboard}>Log Out</button>
+                                        </center>
                                     </DropdownButton>
                                 </li>
                             </ul>

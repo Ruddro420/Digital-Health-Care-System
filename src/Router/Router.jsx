@@ -8,6 +8,7 @@ import { Home, Login, Register, Error } from '../pages';
 
 // import page component
 import { Blood, Hospital, Doctors, Ambulance, Medicine, Emergency } from '../component/PageComponent';
+import Protected from "../component/Protected/Protected";
 
 
 export const router = createBrowserRouter([
@@ -49,8 +50,14 @@ export const router = createBrowserRouter([
   },
   {
     path: "/dashboard",
-    element: <SideBar />,
+    element: <Protected>
+      <SideBar />
+    </Protected>,
     children: [
+      {
+        path: '/dashboard/',
+        element: <ManageDashboard />
+      },
       {
         path: '/dashboard/addblood',
         element: <ManageBlood />
@@ -75,10 +82,7 @@ export const router = createBrowserRouter([
         path: '/dashboard/emergency',
         element: <ManageEmergency />
       },
-      {
-        path: '/dashboard/',
-        element: <ManageDashboard />
-      },
+
     ]
   },
   {

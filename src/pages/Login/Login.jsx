@@ -1,9 +1,16 @@
 import { Button } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Header } from "../../component/PageComponent";
+import { useContext } from "react";
+import { AuthContext } from "../../context/AuthContext";
 
 
 const Login = () => {
+    const navigate = useNavigate()
+    const { user, loginHandler } = useContext(AuthContext)
+    if (user?.email) {
+        navigate('/dashboard');
+    }
     return (
         <div>
             <Header />
@@ -18,11 +25,11 @@ const Login = () => {
                             <div className="col text-center">
                                 <h2>Sign In Here</h2>
                                 <div style={{ marginTop: '20%' }} className="d-grid gap-2">
-                                    <Button variant="outline-dark" size="md">
+                                    <Button onClick={loginHandler} variant="outline-dark" size="md">
                                         Continue With Google
                                     </Button>
                                 </div> <br />
-                                <h6>If you are new create account first <Link to='/register'>Create Here</Link></h6>
+                                {/* <h6>If you are new create account first <Link to='/register'>Create Here</Link></h6> */}
                             </div>
                         </div>
                     </div>
