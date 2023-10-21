@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import './Home.css'
-import Header from '../Header/Header';
+import { Header } from '../../component/PageComponent';
+
 const Home = () => {
     const homeValue = [
         { id: 1, value: 'Blood', src: '/blood', icon: '../../../img/homeIcon/blood.png', bgColor: '#dc765f' },
@@ -14,7 +15,7 @@ const Home = () => {
 
     return (
         <>
-            <Header></Header>
+            <Header />
             <div className='home-container'>
                 <div className="main-heading">
                     <Link to='/' >

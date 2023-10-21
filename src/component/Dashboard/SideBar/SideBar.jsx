@@ -25,7 +25,7 @@ const SideBar = () => {
                                 </div>
                                 <div className="list-item shadow mt-5">
                                     <DropdownButton id="dropdown-basic-button" title="Manage Hospital">
-                                        <Link to='/dashboard/doctors'>
+                                        <Link to='/dashboard/hospital'>
                                             <div className='dropdown-item'>
                                                 Add Hospital
                                             </div>
@@ -34,7 +34,7 @@ const SideBar = () => {
                                 </div>
                                 <div className="list-item shadow mt-5">
                                     <DropdownButton id="dropdown-basic-button" title="Manage Doctors">
-                                        <Link to='/dashboard/addblood'>
+                                        <Link to='/dashboard/doctors'>
                                             <div className='dropdown-item'>
                                                 Add Doctors
                                             </div>
@@ -43,7 +43,7 @@ const SideBar = () => {
                                 </div>
                                 <div className="list-item shadow mt-5">
                                     <DropdownButton id="dropdown-basic-button" title="Manage Ambulance">
-                                        <Link to='/dashboard/addblood'>
+                                        <Link to='/dashboard/ambulance'>
                                             <div className='dropdown-item'>
                                                 Add Ambulance
                                             </div>
@@ -52,7 +52,7 @@ const SideBar = () => {
                                 </div>
                                 <div className="list-item shadow mt-5">
                                     <DropdownButton id="dropdown-basic-button" title="Manage Medicine">
-                                        <Link to='/dashboard/addblood'>
+                                        <Link to='/dashboard/medicine'>
                                             <div className='dropdown-item'>
                                                 Add Medicine
                                             </div>
@@ -61,7 +61,7 @@ const SideBar = () => {
                                 </div>
                                 <div className="list-item shadow mt-5">
                                     <DropdownButton id="dropdown-basic-button" title="Manage Emergency">
-                                        <Link to='/dashboard/addblood'>
+                                        <Link to='/dashboard/emergency'>
                                             <div className='dropdown-item'>
                                                 Add Emergency
                                             </div>

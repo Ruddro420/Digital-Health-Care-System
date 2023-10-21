@@ -1,11 +1,12 @@
 import { Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import Header from "../Header/Header";
+import { Header } from "../../component/PageComponent";
+
 
 const Login = () => {
     return (
         <div>
-            <Header></Header>
+            <Header />
             <div style={{ marginTop: '20%' }} className="container">
                 <div className="row">
                     <div style={{
