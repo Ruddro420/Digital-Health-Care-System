@@ -4,7 +4,7 @@ import './SideBar.css'
 import { Link, Outlet, } from 'react-router-dom';
 import { useContext } from 'react';
 import { AuthContext } from '../../../context/AuthContext';
-import toast from 'react-hot-toast';
+import toast, { Toaster } from 'react-hot-toast';
 /* import toast from 'react-hot-toast'; */
 const SideBar = () => {
     const { user, logOut } = useContext(AuthContext)
@@ -128,6 +128,7 @@ const SideBar = () => {
                     </div>
                 </main>
             </div>
+            <Toaster />
         </>
     );
 };
