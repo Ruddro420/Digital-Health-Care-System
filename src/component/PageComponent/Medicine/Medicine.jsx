@@ -1,35 +1,41 @@
 import { Link } from 'react-router-dom';
 import './Medicine.css'
 import { BsFillTelephoneFill, BsStar } from 'react-icons/bs';
+import { useContext, useEffect, useState } from 'react';
+import axios from 'axios';
+import { AuthContext } from '../../../context/AuthContext';
 const Medicine = () => {
-    const medicineShop = [
-        { id: 1, name: 'Ali Raju', location: 'Rangpur,Bangladesh', phone: '01755232541', rating: '5' },
-        { id: 2, name: 'Jasim Uddin', location: 'Dhaka,Bangladesh', phone: '01755232541', rating: '4' },
-        { id: 3, name: 'Ratul Sarker', location: 'Khulna,Bangladesh', phone: '01755232541', rating: '3' },
-        { id: 4, name: 'Link Done', location: 'Bogra,Bangladesh', phone: '01755232541', rating: '2' },
-        { id: 5, name: 'Meet Sign', location: 'ParkerMor,Bangladesh', phone: '01755232541', rating: '5' },
-        { id: 6, name: 'Just Duoe', location: 'Gaibandha,Bangladesh', phone: '01755232541', rating: '2' },
-    ]
+    // For Location
+    const [searchLocation, setSearchLocation] = useState('');
+    const [medicineShop, setMedicineShop] = useState([]);
+    // get location
+    const { latitude, longitude } = useContext(AuthContext)
+    // get data
+    useEffect(() => {
+        axios.get('http://127.0.0.1:8000/api/getMedicine')
+            .then(function (response) {
+                setMedicineShop(response.data.info);
+            })
+            .catch(function (error) {
+                console.log(error);
+            })
+    }, [])
+
     return (
         <div>
             <div className="main-heading">
                 <Link to='/' >
                     <h3>DIGITAL HEALTH CARE</h3>
                 </Link>
-                <h1>FIND AMBULANCE</h1>
+                <h1>FIND MEDICINE</h1>
             </div>
             <div className="container">
                 <div className="row">
                     <div className="col">
                         <div className="search-container">
-                            <form action="">
-                                <div>
-                                    <input className='form-control custom-input' type="search" name="" id="" placeholder='Find Location ...' /> <br />
-                                </div>
-                                <div className="search-button">
-                                    <button>Search</button>
-                                </div>
-                            </form>
+                            <div>
+                                <input onChange={(e) => setSearchLocation(e.target.value.toLowerCase())} className='form-control custom-input' type="search" name="" id="" placeholder='Find Location ...' /> <br />
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -37,31 +43,36 @@ const Medicine = () => {
                 <div className="container search-result-container">
                     <div className="row">
                         {
-                            medicineShop.map(bloodItem =>
-                                
-                                <div key={bloodItem.id} className="col-4">
+                            medicineShop.filter((searchItem) => searchItem.address.toLowerCase().includes(searchLocation)).map(item =>
+
+                                <div key={item.id} className="col-4">
                                     <div className="card search-content">
                                         <div className="card-body">
-                                            <span><b>S.Name: </b><span className='inner-text'>{bloodItem.name}</span></span> <br />
-                                            <span><b>Location: </b><span className='inner-text'>{bloodItem.location}</span></span> <br />
-                                            <span><b>Phone: </b><span className='inner-text'>{bloodItem.phone}</span></span> <br />
+                                            <span><b>S.Name: </b><span className='inner-text'>{item.shop_name}</span></span> <br />
+                                            <span><b>Location: </b><span className='inner-text'>{item.address} ,{item.state}</span></span> <br />
+                                            <span><b>Phone: </b><span className='inner-text'>{item.phone_no}</span></span> <br />
                                             <span><b>Rating: </b>
-                                            <span className='inner-text'>
-                                                {bloodItem.rating} <BsStar></BsStar>
-                                            </span>
+                                                <span className='inner-text'>
+                                                    {item.rating} <BsStar></BsStar>
+                                                </span>
                                             </span> <br /><br />
                                         </div>
                                         <div className="row text-center">
-                                                <div className="col">
-                                                    <a className='btn btn-dark text-light' href="#"><BsFillTelephoneFill></BsFillTelephoneFill> Call Now</a>
-                                                </div>
-                                                <div className="col">
-                                                    <a className='btn btn-warning text-dark' href="#">Location</a>
-                                                </div>
+                                            <div className="col">
+                                                <a className='btn btn-dark text-light' href={`tel:${item.phone_no}`}><BsFillTelephoneFill></BsFillTelephoneFill> Call Now</a>
                                             </div>
+                                            <div className="col">
+                                                <a
+                                                    target='_blank'
+                                                    href={`https://www.google.com/maps/dir/${latitude},${longitude}/${item.address}/`}
+                                                    rel="noreferrer"
+                                                    className='btn btn-warning text-dark'
+
+                                                >Location</a>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-
                             )
                         }
                     </div>

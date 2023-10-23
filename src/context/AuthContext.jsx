@@ -40,9 +40,35 @@ const AuthProvider = ({ children }) => {
     }, [])
 
 
+    // find my location
+
+    const [latitude, setLatitude] = useState(null);
+    const [longitude, setLongitude] = useState(null);
+    const [error, setError] = useState(null);
 
 
-    const authInfo = { loginHandler, user, logOut }
+    useEffect(() => {
+        if ("geolocation" in navigator) {
+            // Get the user's current location
+            navigator.geolocation.getCurrentPosition(
+                (position) => {
+                    const { latitude, longitude } = position.coords;
+                    setLatitude(latitude);
+                    setLongitude(longitude);
+                },
+                (error) => {
+                    setError("Error getting location: " + error.message);
+                }
+            );
+        } else {
+            setError("Geolocation is not supported by your browser.");
+        }
+    }, []);
+
+
+
+
+    const authInfo = { loginHandler, user, logOut, latitude, longitude }
     return (
         <AuthContext.Provider value={authInfo}>
             {children}

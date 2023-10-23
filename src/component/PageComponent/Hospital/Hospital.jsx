@@ -1,20 +1,25 @@
 import { Link } from 'react-router-dom';
 import './Hospital.css'
 import { BsFillTelephoneFill, BsStar } from 'react-icons/bs';
-import { useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
+import axios from 'axios';
+import { AuthContext } from '../../../context/AuthContext';
 const Hospital = () => {
-    const hospitalData = [
-        { id: 1, name: 'Update Rangpur', location: 'Rangpur,Bangladesh', phone: '01755232541', rating: '5' },
-        { id: 2, name: 'Dhaka Medical', location: 'Dhaka,Bangladesh', phone: '01755232541', rating: '4' },
-        { id: 3, name: 'Khulna Sadar', location: 'Khulna,Bangladesh', phone: '01755232541', rating: '3' },
-        { id: 4, name: 'Bogra Medical', location: 'Bogra,Bangladesh', phone: '01755232541', rating: '2' },
-        { id: 5, name: 'Medical College', location: 'ParkerMor,Bangladesh', phone: '01755232541', rating: '5' },
-        { id: 6, name: 'Pulse Hospital', location: 'Gaibandha,Bangladesh', phone: '01755232541', rating: '2' },
-    ]
-    // For Search
+    // For Location
+    const [searchLocation, setSearchLocation] = useState('');
+    const [hospitalData, setHospitalData] = useState([]);
+    // get location
+    const { latitude, longitude } = useContext(AuthContext)
 
-    const [search,setSearch] = useState('');
-    console.log(search);
+    useEffect(() => {
+        axios.get('http://127.0.0.1:8000/api/getHospital')
+            .then(function (response) {
+                setHospitalData(response.data.info);
+            })
+            .catch(function (error) {
+                console.log(error);
+            })
+    }, [])
     return (
         <div>
             <div className="main-heading">
@@ -27,14 +32,9 @@ const Hospital = () => {
                 <div className="row">
                     <div className="col">
                         <div className="search-container">
-                            <form action="">
-                                <div>
-                                    <input onChange={(e)=> setSearch(e.target.value.toLowerCase())} className='form-control custom-input' type="search" name="" id="" placeholder='Find Location ...' /> <br />
-                                </div>
-                                {/* <div className="search-button">
-                                    <button>Search</button>
-                                </div> */}
-                            </form>
+                            <div>
+                                <input onChange={(e) => setSearchLocation(e.target.value.toLowerCase())} className='form-control custom-input' type="search" name="" id="" placeholder='Find Location ...' /> <br />
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -42,34 +42,34 @@ const Hospital = () => {
                 <div className="container search-result-container">
                     <div className="row">
                         {
-                            hospitalData.filter((bloodItem)=>
-                                /* return search.toLowerCase() === '' ? bloodItem : */ 
-                                bloodItem.location.toLowerCase().includes(search)
-                                || 
-                                bloodItem.location.toUpperCase().includes(search)
-                            )
-                            .map(bloodItem =>
-                                
-                                <div key={bloodItem.id} className="col-4">
+                            hospitalData.filter((searchItem) => searchItem.address.toLowerCase().includes(searchLocation)).map(item =>
+
+                                <div key={item.id} className="col-4">
                                     <div className="card search-content">
                                         <div className="card-body">
-                                            <span><b>H.Name: </b><span className='inner-text'>{bloodItem.name}</span></span> <br />
-                                            <span><b>Location: </b><span className='inner-text'>{bloodItem.location}</span></span> <br />
-                                            <span><b>Phone: </b><span className='inner-text'>{bloodItem.phone}</span></span> <br />
+                                            <span><b>H.Name: </b><span className='inner-text'>{item.hospital_name}</span></span> <br />
+                                            <span><b>Location: </b><span className='inner-text'>{item.address} ,{item.state}</span></span> <br />
+                                            <span><b>Phone: </b><span className='inner-text'>{item.phone_no}</span></span> <br />
                                             <span><b>Rating: </b>
-                                            <span className='inner-text'>
-                                                {bloodItem.rating} <BsStar></BsStar>
-                                            </span>
+                                                <span className='inner-text'>
+                                                    {item.rating} <BsStar></BsStar>
+                                                </span>
                                             </span> <br /><br />
                                         </div>
                                         <div className="row text-center">
-                                                <div className="col">
-                                                    <a className='btn btn-dark text-light' href="#"><BsFillTelephoneFill></BsFillTelephoneFill> Call Now</a>
-                                                </div>
-                                                <div className="col">
-                                                    <a className='btn btn-danger text-light' href="#">Emergency</a>
-                                                </div>
+                                            <div className="col">
+                                                <a className='btn btn-dark text-light' href={`tel:${item.phone_no}`}><BsFillTelephoneFill></BsFillTelephoneFill> Call Now</a>
                                             </div>
+                                            <div className="col">
+                                                <a
+                                                    target='_blank'
+                                                    href={`https://www.google.com/maps/dir/${latitude},${longitude}/${item.address}/`}
+                                                    rel="noreferrer"
+                                                    className='btn btn-warning text-dark'
+
+                                                >Location</a>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
 
