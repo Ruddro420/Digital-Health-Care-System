@@ -105,8 +105,8 @@ const SideBar = () => {
                             >
                                 <i className="fas fa-bars"></i>
                             </button>
-                            <Link to='/dashboard'>
-                                <h2 className="navbar-brand">Welcome to DHCS System</h2>
+                            <Link to='/'>
+                                <h2 className="navbar-brand"> DHCS </h2>
                             </Link>
                             <ul className="navbar-nav ms-auto d-flex flex-row">
                                 <li className="nav-item dropdown">

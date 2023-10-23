@@ -2,9 +2,11 @@ import { Form, InputGroup } from 'react-bootstrap';
 import './Blood.css'
 import { BsFillSearchHeartFill } from "react-icons/bs";
 import { BsFillTelephoneFill } from "react-icons/bs";
-import { Link } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
+import { AuthContext } from '../../../context/AuthContext';
+import toast, { Toaster } from 'react-hot-toast';
 
 const Blood = () => {
 
@@ -13,6 +15,10 @@ const Blood = () => {
     // For Blood
     const [searchBlood, setSearchBlood] = useState('');
     const [bloodData, setBloodData] = useState([]);
+    const [check, setCheck] = useState(false);
+
+    const { user } = useContext(AuthContext)
+    const navigate = useNavigate()
 
     useEffect(() => {
         axios.get('http://127.0.0.1:8000/api/getBlood')
@@ -23,6 +29,22 @@ const Blood = () => {
                 console.log(error);
             })
     }, [])
+
+    // call now data
+
+    const callNow = () => {
+        if (user?.email) {
+            toast.success('Login success you can call now')
+            setCheck(true)
+        } else {
+            toast.error('Please login first')
+            setTimeout(() => {
+                navigate('/login')
+            }, 2000);
+        }
+    }
+
+
     return (
         <div>
             <div className="main-heading">
@@ -88,17 +110,22 @@ const Blood = () => {
                                                 <span><b>Last Date: </b><span className='inner-text'>{bloodItem.donate_date}</span></span> <br /><br />
                                             </div>
                                             <div className='search-container-button'>
-                                                <a href={`tel:${bloodItem.phone_no}`}><BsFillTelephoneFill></BsFillTelephoneFill> Call Now</a>
+                                                {
+                                                    check ? <a href={`tel:${bloodItem.phone_no}`}><BsFillTelephoneFill></BsFillTelephoneFill> Call Now</a>
+                                                        :
+                                                        <span onClick={callNow} /* href={`tel:${bloodItem.phone_no}`} */><BsFillTelephoneFill></BsFillTelephoneFill> Call Now</span>
+                                                }
                                             </div>
                                         </div>
                                     </div>
-
                                 )
                         }
                     </div>
                 </div>
             </div>
+            <Toaster />
         </div>
+
     );
 };
 

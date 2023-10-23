@@ -9,7 +9,7 @@ const Login = () => {
     const navigate = useNavigate()
     const { user, loginHandler } = useContext(AuthContext)
     if (user?.email) {
-        navigate('/dashboard');
+        navigate('/notice');
     }
     return (
         <div>

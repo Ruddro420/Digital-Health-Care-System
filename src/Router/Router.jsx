@@ -9,6 +9,7 @@ import { Home, Login, Register, Error } from '../pages';
 // import page component
 import { Blood, Hospital, Doctors, Ambulance, Medicine, Emergency } from '../component/PageComponent';
 import Protected from "../component/Protected/Protected";
+import Notice from "../pages/Notice/Notice";
 
 
 export const router = createBrowserRouter([
@@ -47,6 +48,12 @@ export const router = createBrowserRouter([
   {
     path: "/register",
     element: <Register />,
+  },
+  {
+    path: "/notice",
+    element: <Protected>
+      <Notice />
+    </Protected>,
   },
   {
     path: "/dashboard",

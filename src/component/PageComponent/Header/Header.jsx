@@ -1,7 +1,10 @@
+import { useContext } from "react";
 import { Container, Navbar } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../../context/AuthContext";
 
 const Header = () => {
+    const { user } = useContext(AuthContext)
     return (
         <div>
             <Navbar bg='light'>
@@ -12,7 +15,10 @@ const Header = () => {
                     <Navbar.Toggle />
                     <Navbar.Collapse className="justify-content-end">
                         <Navbar.Text>
-                            {/* Signed in as: */} <Link to='/login'>Sign In</Link>
+                            {
+                                user?.email ? <Link className="btn btn-warning" to='/dashboard'>Dashboard</Link> : <Link to='/login'>Sign In</Link>
+                            }
+
                         </Navbar.Text>
                     </Navbar.Collapse>
                 </Container>
