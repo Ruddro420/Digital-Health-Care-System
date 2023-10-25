@@ -1,18 +1,34 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import Table from 'react-bootstrap/Table';
+import toast from "react-hot-toast";
+import { BsFillCheckCircleFill, BsFillXSquareFill } from "react-icons/bs";
 
 const SuperDoctor = () => {
     const [data, setData] = useState([]);
+    const [loading, setLoading] = useState(false);
     useEffect(() => {
-        axios.get('http://127.0.0.1:8000/api/getDoctor')
+        axios.get('http://127.0.0.1:8000/api/getSAdoctor')
             .then(function (response) {
                 setData(response.data.info);
+                setLoading(false);
             })
             .catch(function (error) {
                 console.log(error);
             })
-    }, [])
+    }, [loading])
+    // approve data
+    const confirmData = (id) => {
+        axios.post(`http://127.0.0.1:8000/api/updateDoctor/${id}`)
+            // eslint-disable-next-line no-unused-vars
+            .then(function (response) {
+                setLoading(true)
+                toast.success("Data Update")
+            })
+            .catch(function (error) {
+                console.log(error);
+            })
+    }
     return (
         <div>
             <Table striped bordered hover>
@@ -44,7 +60,17 @@ const SuperDoctor = () => {
                                     <td>{item.state}</td>
                                     <td>{item.zip}</td>
                                     <td>{item.aggree}</td>
-                                    <td>{item.status}</td>
+                                    <td>{item.status == 1 ? <button className="btn btn-success">Approve</button> : <button className="btn btn-danger">Pending</button>}</td>
+                                    <td>
+                                        {
+                                            item.status == 1 ?
+                                                <span className="btn btn-danger" onClick={() => confirmData(item.id)}><BsFillXSquareFill /></span>
+                                                :
+                                                <span className="btn btn-success" onClick={() => confirmData(item.id)}>
+                                                    <BsFillCheckCircleFill />
+                                                </span>
+                                        }
+                                    </td>
                                 </tr>
                             )
                         })

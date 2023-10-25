@@ -11,7 +11,9 @@ import { Blood, Hospital, Doctors, Ambulance, Medicine, Emergency } from '../com
 import Protected from "../component/Protected/Protected";
 import Notice from "../pages/Notice/Notice";
 import MainAdmin from "../superAdmin/MainAdmin";
-import SuperDashboard from "../superAdmin/SuperDashboard";
+//import SuperDashboard from "../superAdmin/SuperDashboard";
+import Dashboard from "../superAdmin/Dashboard/Dashboard";
+import MainDash from "../superAdmin/Dashboard/MainDash";
 
 
 export const router = createBrowserRouter([
@@ -99,7 +101,13 @@ export const router = createBrowserRouter([
   },
   {
     path: '/superDashboard',
-    element: <SuperDashboard />
+    element: <Dashboard />,
+    children: [
+      {
+        path: "/superDashboard/",
+        element: <MainDash />,
+      },
+    ]
   },
   {
     path: "*",

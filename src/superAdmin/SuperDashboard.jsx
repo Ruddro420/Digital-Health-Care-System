@@ -6,6 +6,7 @@ import SuperMedicine from './SuperMedicine';
 import SuperHospital from './SuperHospital';
 import SuperEmergency from './SuperEmergency';
 import { useState } from 'react';
+import { Toaster } from 'react-hot-toast';
 
 const SuperDashboard = () => {
     const [selectData, setSelectData] = useState('')
@@ -32,11 +33,11 @@ const SuperDashboard = () => {
 
     return (
         <>
-            <div className="container">
+            <div className="superAdmin-Data-show">
                 <div className="row">
-                    <div className="card m-5">
+                    <div className="card">
                         <div className="card-body">
-                            <div className="col mt-5">
+                            <div className="col">
                                 <Form.Select
                                     onChange={(e) => setSelectData(e.target.value)}
                                     aria-label="Default select example">
@@ -57,32 +58,11 @@ const SuperDashboard = () => {
                                     }
                                 </div>
                             }
-
-
-                            {/* <div className="col mt-5">
-                            <h3 className='mb-4'>Manage Doctors</h3>
-                            <SuperDoctor />
-                        </div>
-                        <div className="col mt-5">
-                            <h3 className='mb-4'>Manage Medicine</h3>
-                            <SuperMedicine />
-                        </div>
-                        <div className="col mt-5">
-                            <h3 className='mb-4'>Manage Hospotals</h3>
-                            <SuperHospital />
-                        </div>
-                        <div className="col mt-5">
-                            <h3 className='mb-4'>Manage Hospotals</h3>
-                            <SuperHospital />
-                        </div>
-                        <div className="col mt-5">
-                            <h3 className='mb-4'>Manage Emergency</h3>
-                            <SuperEmergency />
-                        </div> */}
                         </div>
                     </div>
                 </div>
             </div>
+            <Toaster />
         </>
     );
 
