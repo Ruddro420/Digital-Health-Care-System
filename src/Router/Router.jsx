@@ -10,6 +10,8 @@ import { Home, Login, Register, Error } from '../pages';
 import { Blood, Hospital, Doctors, Ambulance, Medicine, Emergency } from '../component/PageComponent';
 import Protected from "../component/Protected/Protected";
 import Notice from "../pages/Notice/Notice";
+import MainAdmin from "../superAdmin/MainAdmin";
+import SuperDashboard from "../superAdmin/SuperDashboard";
 
 
 export const router = createBrowserRouter([
@@ -89,8 +91,15 @@ export const router = createBrowserRouter([
         path: '/dashboard/emergency',
         element: <ManageEmergency />
       },
-
     ]
+  },
+  {
+    path: '/admin-login',
+    element: <MainAdmin />
+  },
+  {
+    path: '/superDashboard',
+    element: <SuperDashboard />
   },
   {
     path: "*",

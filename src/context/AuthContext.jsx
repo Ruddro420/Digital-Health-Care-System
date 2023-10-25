@@ -14,6 +14,8 @@ const provider = new GoogleAuthProvider();
 
 const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null)
+    const [superEmail, setSuperEmail] = useState('')
+    const [superPass, setSuperPass] = useState('')
 
     const loginHandler = () => {
         signInWithPopup(auth, provider)
@@ -68,7 +70,7 @@ const AuthProvider = ({ children }) => {
 
 
 
-    const authInfo = { loginHandler, user, logOut, latitude, longitude }
+    const authInfo = { loginHandler, user, logOut, latitude, longitude, superEmail, superPass, setSuperEmail, setSuperPass }
     return (
         <AuthContext.Provider value={authInfo}>
             {children}
