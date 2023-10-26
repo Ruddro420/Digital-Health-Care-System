@@ -19,7 +19,8 @@ const ManageHospital = () => {
     const navigate = useNavigate()
     // login info
     const { user } = useContext(AuthContext)
-
+    // base url
+    const BASE_URL = import.meta.env.VITE_API_BASE_URL;
     const handleSubmit = (event) => {
         event.preventDefault();
         const form = event.currentTarget;
@@ -29,7 +30,7 @@ const ManageHospital = () => {
         }
         else {
             // POST REQUEST
-            axios.post('http://127.0.0.1:8000/api/storeHospital', {
+            axios.post(`${BASE_URL}/api/storeHospital`, {
                 uid: user.uid,
                 hospital_name: name,
                 phone_no: phone,

@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom';
-import './Medicine.css'
 import { BsFillTelephoneFill, BsStar } from 'react-icons/bs';
 import { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
@@ -10,9 +9,10 @@ const Medicine = () => {
     const [medicineShop, setMedicineShop] = useState([]);
     // get location
     const { latitude, longitude } = useContext(AuthContext)
-    // get data
+    // base url
+    const BASE_URL = import.meta.env.VITE_API_BASE_URL;
     useEffect(() => {
-        axios.get('http://127.0.0.1:8000/api/getMedicine')
+        axios.get(`${BASE_URL}/api/getMedicine`)
             .then(function (response) {
                 setMedicineShop(response.data.info);
             })

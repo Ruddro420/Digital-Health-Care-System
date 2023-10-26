@@ -5,7 +5,7 @@ import './Dashboard.css'
 
 const Dashboard = () => {
     return (
-        <div>
+        <div className="super-admin">
             <input type="checkbox" name="" id="menu-toggle" />
             <div className="overlay"><label htmlFor="menu-toggle">
             </label></div>

@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom';
-import './Doctors.css'
 import { BsFillTelephoneFill, BsStar } from 'react-icons/bs';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
@@ -7,9 +6,10 @@ const Doctors = () => {
     // For Location
     const [searchLocation, setSearchLocation] = useState('');
     const [doctosData, setDoctosData] = useState([]);
-
+    // base url
+    const BASE_URL = import.meta.env.VITE_API_BASE_URL;
     useEffect(() => {
-        axios.get('http://127.0.0.1:8000/api/getDoctor')
+        axios.get(`${BASE_URL}/api/getDoctor`)
             .then(function (response) {
                 setDoctosData(response.data.info);
             })

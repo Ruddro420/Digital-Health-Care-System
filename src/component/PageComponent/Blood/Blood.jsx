@@ -1,5 +1,4 @@
 import { Form, InputGroup } from 'react-bootstrap';
-import './Blood.css'
 import { BsFillSearchHeartFill } from "react-icons/bs";
 import { BsFillTelephoneFill } from "react-icons/bs";
 import { Link, useNavigate } from 'react-router-dom';
@@ -19,9 +18,11 @@ const Blood = () => {
 
     const { user } = useContext(AuthContext)
     const navigate = useNavigate()
+    // base url
+    const BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
     useEffect(() => {
-        axios.get('http://127.0.0.1:8000/api/getBlood')
+        axios.get(`${BASE_URL}/api/getBlood`)
             .then(function (response) {
                 setBloodData(response.data.info);
             })

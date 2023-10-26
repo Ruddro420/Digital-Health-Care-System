@@ -7,8 +7,10 @@ import { BsFillCheckCircleFill, BsFillXSquareFill } from "react-icons/bs";
 const SuperMedicine = () => {
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(false);
+    // base url
+    const BASE_URL = import.meta.env.VITE_API_BASE_URL;
     useEffect(() => {
-        axios.get('http://127.0.0.1:8000/api/getSAmedicine')
+        axios.get(`${BASE_URL}/api/getSAmedicine`)
             .then(function (response) {
                 setData(response.data.info);
                 setLoading(false);
@@ -19,7 +21,7 @@ const SuperMedicine = () => {
     }, [loading])
     // approve data
     const confirmData = (id) => {
-        axios.post(`http://127.0.0.1:8000/api/updateMedicine/${id}`)
+        axios.post(`${BASE_URL}/api/updateMedicine/${id}`)
             // eslint-disable-next-line no-unused-vars
             .then(function (response) {
                 setLoading(true)

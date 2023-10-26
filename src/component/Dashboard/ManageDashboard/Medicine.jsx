@@ -10,10 +10,11 @@ const Medicine = () => {
     const [getData, setGetData] = useState([])
     // eslint-disable-next-line no-unused-vars
     const [error, setError] = useState('')
-
+    // base url
+    const BASE_URL = import.meta.env.VITE_API_BASE_URL;
     useEffect(() => {
         // Make a request for a user with a given ID
-        axios.get(`http://127.0.0.1:8000/api/getOnlyMedicine/${user.uid}`)
+        axios.get(`${BASE_URL}/api/getOnlyMedicine/${user.uid}`)
             .then(function (response) {
                 setGetData(response.data.info)
             })

@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom';
-import './Emergency.css'
 import { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
 import { BsFillTelephoneFill, BsStar } from 'react-icons/bs';
@@ -10,10 +9,11 @@ const Emergency = () => {
     const [emergencyData, setEmergencyData] = useState([]);
     // get location
     const { latitude, longitude } = useContext(AuthContext)
-
+    // base url
+    const BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
     useEffect(() => {
-        axios.get('http://127.0.0.1:8000/api/getEmergency')
+        axios.get(`${BASE_URL}/api/getEmergency`)
             .then(function (response) {
                 setEmergencyData(response.data.info);
             })

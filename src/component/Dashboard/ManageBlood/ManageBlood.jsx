@@ -1,4 +1,3 @@
-import './ManageBlood.css'
 import { useContext, useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
@@ -23,6 +22,8 @@ const ManageBlood = () => {
     const navigate = useNavigate()
     // login info
     const { user } = useContext(AuthContext)
+    // base url
+    const BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -33,7 +34,7 @@ const ManageBlood = () => {
         }
         else {
             // POST REQUEST
-            axios.post('http://127.0.0.1:8000/api/storeBlood', {
+            axios.post(`${BASE_URL}/api/storeBlood`, {
                 uid: user.uid,
                 donate_date: date,
                 blood_group: blood,

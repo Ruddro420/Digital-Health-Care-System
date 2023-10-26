@@ -20,7 +20,8 @@ const ManageMedicine = () => {
     const navigate = useNavigate()
     // login info
     const { user } = useContext(AuthContext)
-
+    // base url
+    const BASE_URL = import.meta.env.VITE_API_BASE_URL;
     const handleSubmit = (event) => {
         event.preventDefault();
         const form = event.currentTarget;
@@ -30,7 +31,7 @@ const ManageMedicine = () => {
         } else {
 
             // POST REQUEST
-            axios.post('http://127.0.0.1:8000/api/storeMedicine', {
+            axios.post(`${BASE_URL}/api/storeMedicine`, {
                 uid: user.uid,
                 shop_name: shopName,
                 phone_no: phone,

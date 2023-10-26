@@ -4,11 +4,15 @@ import Table from 'react-bootstrap/Table';
 import toast from "react-hot-toast";
 import { BsFillCheckCircleFill, BsFillXSquareFill } from "react-icons/bs";
 
+
 const SuperAmbulance = () => {
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(false);
+    // base url
+    const BASE_URL = import.meta.env.VITE_API_BASE_URL;
+
     useEffect(() => {
-        axios.get('http://127.0.0.1:8000/api/getSAambulance')
+        axios.get(`${BASE_URL}/api/getSAambulance`)
             .then(function (response) {
                 setData(response.data.info);
                 setLoading(false);
@@ -19,7 +23,7 @@ const SuperAmbulance = () => {
     }, [loading])
     // approve data
     const confirmData = (id) => {
-        axios.post(`http://127.0.0.1:8000/api/updateAmbulance/${id}`)
+        axios.post(`${BASE_URL}/api/updateAmbulance/${id}`)
             // eslint-disable-next-line no-unused-vars
             .then(function (response) {
                 setLoading(true)
